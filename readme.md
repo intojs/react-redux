@@ -1,1 +1,1 @@
-React, Redux and Other Fun Stuff
+Welcome to the Angular One Redux JSPM Seed

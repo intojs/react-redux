@@ -1,0 +1,11 @@
+# Logs
+logs
+*.log
+
+# Files
+src/app/config.js
+
+# Directories
+node_modules
+jspm_packages
+cdn
