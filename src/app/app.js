@@ -1,51 +1,108 @@
 import expect, { createSpy, spyOn, isSpy } from 'expect';
 import deepFreeze from 'deep-freeze';
+import { createStore, combineReducers } from 'redux';
 
-import { combineReducers } from 'redux';
+import 'fetch';
+import ReactDom from 'react-dom';
+import React from 'react';
 
-const todoApp = combineReducers({
-	todos,
-	
-});
+import {reposForUser} from './services/api';
+import RepositoryList from './components/repository-list';
 
-const todos = (state = [], action = {}) => {
+const visibilityFilter = (state = 'SHOW_ALL', action = {}) => {
     switch (action.type) {
-        case 'ADD_TODO':
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    completed: false
-                }
-            ];
-            // Alternative method using concat.
-            // return state.concat({
-            // 	id: action.id,
-            // 	text: action.text,
-            // 	completed: false
-            // });
-            break;
-        case 'TOGGLE_TODO':
-        	return state.map((todo) => {
-        		if (action.id === todo.id) {
-        			// Alternative.
-        			// return Object.assign({}, todo, {
-        			// 	completed: !todo.completed
-        			// });
-
-        			return {
-        				...todo,
-        				completed: !todo.completed
-        			}
-        		} else {
-        			return todo;
-        		}
-        	});
+        case 'SET_VISIBILITY_FILTER':
+            return action.filter;
         default:
             return state;
     }
 };
+
+const todo = (state, action) => {
+    switch (action.type) {
+        case 'ADD_TODO':
+            return {
+                id: action.id,
+                text: action.text,
+                completed: false
+            };
+        case 'TOGGLE_TODO':
+            if (state.id !== action.id) {
+                return state;
+            }
+            return Object.assign({}, state, {
+                completed: !state.completed
+            });
+            // return {
+            //     ...state,
+            //      completed: !state.completed    
+            // }
+        default:
+            return state;
+    }
+};
+
+const todos = (state = [], action = {}) => {
+    switch (action.type) {
+        case 'ADD_TODO':
+            return state.concat(todo(undefined, action));
+            //return [
+            //    ...state,
+            //    todo(undefined, action)
+            //];
+        case 'TOGGLE_TODO':
+            return state.map(t => todo(t, action));
+        default:
+            return state;
+    }
+};
+
+const todoApp = combineReducers({
+    todos,
+    visibilityFilter
+});
+
+const store = createStore(
+    todoApp,
+    {},
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+);
+
+
+
+class HelloWorld extends React.Component {
+
+    render() {
+        return (
+            <div>
+                <h2>intojs</h2>
+                <RepositoryList />
+            </div>
+        )
+    }
+};
+
+ReactDom.render(<HelloWorld />, document.querySelector('#app'));
+
+
+
+
+
+
+
+
+// const todoApp = (state = {}, action) => {
+//     return {
+//         todos: todos(
+//             state.todos,
+//             action
+//         ),
+//         visibilityFilter: visibilityFilter(
+//             state.visibilityFilter,
+//             action
+//         )
+//     };
+// };
 
 const testAddTodo = () => {
     const stateBefore = [];
@@ -70,24 +127,24 @@ const testAddTodo = () => {
 
 
 const testToggleTodo = () => {
-	const stateBefore = [{
+    const stateBefore = [{
         id: 0,
         text: 'Learn Redux',
         completed: false
-    },{
+    }, {
         id: 1,
         text: 'Learn React',
         completed: false
     }];
-    const action  = {
-    	type: 'TOGGLE_TODO',
-    	id: 1
+    const action = {
+        type: 'TOGGLE_TODO',
+        id: 1
     };
     const stateAfter = [{
         id: 0,
         text: 'Learn Redux',
         completed: false
-    },{
+    }, {
         id: 1,
         text: 'Learn React',
         completed: true
