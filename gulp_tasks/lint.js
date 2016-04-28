@@ -6,9 +6,9 @@
 
 		var gulp = require('gulp'),
 	        plumber = require('gulp-plumber'),
-	        jshint = require('gulp-jshint');
-
-		gulp.task('js-hint', function () {
+	        eslint = require('gulp-eslint');
+			
+		gulp.task('lint', function () {
 			return gulp.src(opts.src)
 				.pipe(plumber({
 			    	handleError: function (err) {
@@ -16,11 +16,9 @@
 			            this.emit('end');
 			        }
 			    }))
-				.pipe(jshint({
-					expr: true,
-					esnext: true
-				}))
-				.pipe(jshint.reporter('jshint-stylish'));
+				.pipe(eslint())
+  				.pipe(eslint.format());
+				// .pipe(eslint.failOnError());
 		});
 	};
-}());
+}()); 

@@ -58,33 +58,77 @@ const todos = (state = [], action = {}) => {
     }
 };
 
-const todoApp = combineReducers({
+const todoAppReducer = combineReducers({
     todos,
     visibilityFilter
 });
 
 const store = createStore(
-    todoApp,
+    todoAppReducer,
     {},
     window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
+// class HelloWorld extends React.Component {
 
+//     render() {
+//         return (
+//             <div>
+//                 <h2>intojs</h2>
+//                 <RepositoryList />
+//                 <Test />
+//             </div>
+//         ); 
+//     }
+// };
+// ReactDom.render(<HelloWorld />, document.querySelector('#app'));
 
-class HelloWorld extends React.Component {
+let id = 0;
 
+class TodoApp extends React.Component {
     render() {
         return (
             <div>
-                <h2>intojs</h2>
-                <RepositoryList />
-                <Test />
+                <h1>Todo Application</h1>
+                <input type="text" ref={node => {
+                    this.input = node;
+                }} />
+                <button onClick={() => {
+                   store.dispatch({
+                        type: 'ADD_TODO',
+                        text: this.input.value,
+                        id: id++ 
+                   });
+                }}>
+                    Add todo
+                </button>
+                <ul>
+                    {
+                        this.props.todos.map(todo =>
+                            <li key={todo.id}>
+                                {todo.text}
+                            </li>
+                        )
+                    }
+                </ul>
             </div>
         )
     }
+}
+
+const render = () => {
+    ReactDom.render(
+        <TodoApp 
+            todos={store.getState().todos}
+        />,
+        document.getElementById('app')
+    );
 };
 
-ReactDom.render(<HelloWorld />, document.querySelector('#app'));
+store.subscribe(render);
+
+render();
+
 
 
 

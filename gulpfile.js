@@ -91,7 +91,7 @@
     	dest: distPath
 	});
 
-	require(tasksPath + '/js-hint.js')({
+	require(tasksPath + '/lint.js')({
 		src: [
 			basePath + '/app/**/*.js',
 			'!' + basePath+'/app/**/*.spec.js'
@@ -128,7 +128,7 @@
 		gulp.watch([
 			basePath + '/app/**/*.js',
 			'!' + basePath + '/app/**/*.spec.js',
-		], ['js-hint', browserSync.reload]);
+		], ['lint', browserSync.reload]);
 		
 		gulp.watch(basePath+'/**/*.less', ['less']);
 
@@ -165,7 +165,7 @@
 		runSeq(
 			['set-dev-node-env'],
 			['set-config'],
-			['js-hint', 'less'],
+			['lint', 'less'],
 			['browser-sync'],
 			['watch'],
 			callback
@@ -180,7 +180,7 @@
 		runSeq(
 			['set-stage-node-env'],
 			['set-config'],
-			['js-hint', 'less'],
+			['lint', 'less'],
 			['browser-sync'],
 			['watch'],
 			callback
@@ -196,7 +196,7 @@
 		runSeq(
 			['clean', 'clean-cdn', 'set-stage-node-env'],
 			['set-config'],
-			['js-hint', 'less'],
+			['lint', 'less'],
 			['useref'],
 			['bundle'],
 			['html-base-replace'],
@@ -215,7 +215,7 @@
 		runSeq(
 			['clean', 'clean-cdn', 'set-prod-node-env'],
 			['set-config'],
-			['js-hint', 'less'],
+			['lint', 'less'],
 			['useref'],
 			['bundle'],
 			['html-base-replace'],
