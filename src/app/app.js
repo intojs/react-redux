@@ -8,6 +8,7 @@ import React from 'react';
 
 import {reposForUser} from './services/api';
 import RepositoryList from './components/repository-list';
+import Test from './components/test.jsx!';
 
 const visibilityFilter = (state = 'SHOW_ALL', action = {}) => {
     switch (action.type) {
@@ -77,6 +78,7 @@ class HelloWorld extends React.Component {
             <div>
                 <h2>intojs</h2>
                 <RepositoryList />
+                <Test />
             </div>
         )
     }

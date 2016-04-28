@@ -63,6 +63,7 @@
       "deep-freeze": "npm:deep-freeze@^0.0.1",
       "expect": "npm:expect@^1.18.0",
       "fetch": "npm:whatwg-fetch@^0.11.0",
+      "jsx": "github:floatdrop/plugin-jsx@^1.2.1",
       "react": "npm:react@^15.0.1",
       "react-dom": "npm:react-dom@^15.0.1",
       "react-router": "npm:react-router@^2.3.0",
@@ -70,8 +71,7 @@
     },
     "devDependencies": {
       "babel": "npm:babel-core@5.8.24",
-      "babel-plugin-transform-react-jsx": "npm:babel-plugin-transform-react-jsx@^6.7.5",
-      "babel-runtime": "npm:babel-runtime@5.8.24",
+      "babel-runtime": "npm:babel-runtime@^5.8.24",
       "core-js": "npm:core-js@^2.3.0"
     }
   }
