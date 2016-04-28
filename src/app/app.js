@@ -34,10 +34,10 @@ const todo = (state, action) => {
             return Object.assign({}, state, {
                 completed: !state.completed
             });
-            // return {
-            //     ...state,
-            //      completed: !state.completed    
-            // }
+        // return {
+        //     ...state,
+        //      completed: !state.completed    
+        // }
         default:
             return state;
     }
@@ -47,10 +47,10 @@ const todos = (state = [], action = {}) => {
     switch (action.type) {
         case 'ADD_TODO':
             return state.concat(todo(undefined, action));
-            //return [
-            //    ...state,
-            //    todo(undefined, action)
-            //];
+        //return [
+        //    ...state,
+        //    todo(undefined, action)
+        //];
         case 'TOGGLE_TODO':
             return state.map(t => todo(t, action));
         default:
@@ -92,14 +92,14 @@ class TodoApp extends React.Component {
                 <h1>Todo Application</h1>
                 <input type="text" ref={node => {
                     this.input = node;
-                }} />
+                } } />
                 <button onClick={() => {
-                   store.dispatch({
+                    store.dispatch({
                         type: 'ADD_TODO',
                         text: this.input.value,
-                        id: id++ 
-                   });
-                }}>
+                        id: id++
+                    });
+                } }>
                     Add todo
                 </button>
                 <ul>
@@ -118,9 +118,9 @@ class TodoApp extends React.Component {
 
 const render = () => {
     ReactDom.render(
-        <TodoApp 
+        <TodoApp
             todos={store.getState().todos}
-        />,
+            />,
         document.getElementById('app')
     );
 };
@@ -178,10 +178,10 @@ const testToggleTodo = () => {
         text: 'Learn Redux',
         completed: false
     }, {
-        id: 1,
-        text: 'Learn React',
-        completed: false
-    }];
+            id: 1,
+            text: 'Learn React',
+            completed: false
+        }];
     const action = {
         type: 'TOGGLE_TODO',
         id: 1
@@ -191,10 +191,10 @@ const testToggleTodo = () => {
         text: 'Learn Redux',
         completed: false
     }, {
-        id: 1,
-        text: 'Learn React',
-        completed: true
-    }];
+            id: 1,
+            text: 'Learn React',
+            completed: true
+        }];
 
     deepFreeze(stateBefore);
     deepFreeze(action);
