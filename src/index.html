@@ -1,41 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="description" content="">
-    	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
-		
-		<title>React, Redux and Other Fun Stuff</title>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+
+	<title>React, Redux and Other Fun Stuff</title>
+
+	<!-- build:css /css/vendor.css -->
+	<!-- endbuild -->
+
+	<!-- build:css /css/main.css -->
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<!-- endbuild -->
+
+	<!-- build:base -->
+	<base href="/">
+	<!-- endbuild -->
+
+	<link rel="shortcut icon" href="assets/favicon.ico">
+</head>
+
+<body>
+
+	<div id="app"></div>
 	
-		<!-- build:css /css/vendor.css -->
-	 	<!-- endbuild -->
-		
-		<!-- build:css /css/main.css -->
-	 	<link rel="stylesheet" type="text/css" href="/css/main.css">
-	 	<!-- endbuild -->
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-6">Hello</div>
+			<div class="col-sm-6">Bootstrap grid</div>
+		</div>
+	</div>
 
-	 	<!-- build:base -->
-	 	<base href="/">
-	 	<!-- endbuild -->
+	<!-- build:js /app/vendor.js -->
+	<!-- endbuild -->
 
-	 	<link rel="shortcut icon" href="/assets/favicon.ico">
-	</head>
-	<body>
-	
-		<div id="app"></div>
+	<!--<script type="text/javascript" src="app/app.bundle.js"></script>-->
 
-		<!-- build:js /app/vendor.js -->
-		<!-- endbuild -->
-
-		<script type="text/javascript" src="/app/app.bundle.js"></script>
-		
-		<!-- build:remove -->
-		<script type="text/javascript" src="jspm_packages/system.js"></script>
+	<!-- build:remove -->
+	<!--<script type="text/javascript" src="jspm_packages/system.js"></script>
 		<script type="text/javascript" src="config.js"></script>
 		<script type="text/javascript">
 			System.import('app/app');
-		</script>
-		<!-- endbuild -->
-	</body>
+		</script>-->
+	<!-- endbuild -->
+</body>
+
 </html>

@@ -5,7 +5,9 @@ export default class Test extends React.Component {
         return  (
             <div>
                 <div className="test"></div>
-                <p>Hello world</p>
+                <p ref={() => {
+                    console.log('hey');
+                }}>Hello world</p>
             </div>      
         ); 
     }

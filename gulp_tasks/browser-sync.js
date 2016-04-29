@@ -1,18 +1,13 @@
-module.exports = function(opts) {
+var browserSync = require('browser-sync');
 
-    var gulp = require('gulp'),
-        browserSync = require('browser-sync'),
-        historyApiFallback = require('connect-history-api-fallback');
-        // modRewrite = require('connect-modrewrite');
-
-    gulp.task('browser-sync', function() {
+module.exports = function (opts) {
+    return function () {
         browserSync.init({
             server: {
-                baseDir: opts.baseDir,
-                middleware: [historyApiFallback()]
+                baseDir: opts.baseDir
             },
             port: opts.port,
             browser: opts.browser,
         });
-    });
+    }
 };
