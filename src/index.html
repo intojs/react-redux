@@ -9,43 +9,23 @@
 
 	<title>React, Redux and Other Fun Stuff</title>
 
-	<!-- build:css /css/vendor.css -->
-	<!-- endbuild -->
-
-	<!-- build:css /css/main.css -->
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-	<!-- endbuild -->
-
-	<!-- build:base -->
-	<base href="/">
-	<!-- endbuild -->
-
-	<link rel="shortcut icon" href="assets/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
 
 <body>
-
-	<div id="app"></div>
-	
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-6">Hello</div>
-			<div class="col-sm-6">Bootstrap grid</div>
+			<div class="col-sm-12">
+				<div id="app"></div>
+			</div>
 		</div>
 	</div>
-
-	<!-- build:js /app/vendor.js -->
-	<!-- endbuild -->
-
-	<!--<script type="text/javascript" src="app/app.bundle.js"></script>-->
-
-	<!-- build:remove -->
-	<!--<script type="text/javascript" src="jspm_packages/system.js"></script>
-		<script type="text/javascript" src="config.js"></script>
-		<script type="text/javascript">
-			System.import('app/app');
-		</script>-->
-	<!-- endbuild -->
+	<script type="text/javascript" src="jspm_packages/system.js"></script>
+	<script type="text/javascript" src="config.js"></script>
+	<script type="text/javascript">
+		System.import('app/app');
+	</script>
 </body>
 
 </html>

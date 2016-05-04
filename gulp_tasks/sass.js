@@ -10,9 +10,7 @@ module.exports = function (plugins, opts) {
                 }
             }))
             .pipe(plugins.sass({
-                includePaths: [
-                    './node_modules/bootstrap-sass/assets/stylesheets'
-                ],
+                includePaths: opts.src,
                 errLogToConsole: true,
                 outputStyle: 'expanded'
             }).on('error', plugins.sass.logError))
